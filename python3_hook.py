@@ -7,7 +7,7 @@ import signal
 dir_path = os.path.dirname(os.path.abspath( __file__ ))
 github_shellstr = '''git fetch --all; git reset --hard origin/master; git pull origin master'''
 _=sp.check_output(github_shellstr, shell=True)
-shelllst=['/home/jianwei.xiao/venv/new_google_api/bin/python',
+shelllst=['python3',
           os.path.join(dir_path, 'subscriber.py')]
 
 proc = sp.Popen(shelllst)
