@@ -23,10 +23,18 @@ def stream_data(bigquery_client, dataset_id, table_id, rows, schemalst:list):
             table = bigquery_client.create_table(tablet)
         except:
             table = bigquery_client.get_table(table_ref)
-    errors = bigquery_client.create_rows(table, rows, )
+    errors = bigquery_client.insert_rows(table, rows, )
     if not errors:
         print('Loaded {} row(s) into {}:{}'.format(len(rows), dataset_id, table_id))
     else:
         print('Errors:')
+        print(errors)
 
 
+if __name__ == '__main__':
+    bigquery_client = bigquery.Client('yl3573-214601')
+    dataset_id = 'scraping'
+    table_id = 'test'
+    rows = [(1, 'INTEGER'),]
+    schemalst=[('number', 'INTEGER')]
+    stream_data(bigquery_client, dataset_id, table_id, rows, schemalst)
